@@ -52,7 +52,8 @@ form.addEventListener("submit", async (event) => {
       ${explorer ? `<a class="explorer" href="${explorer}" target="_blank" rel="noreferrer">Ver transacción / NFT en PolygonScan ↗</a>` : `<p class="local-note">Verificación realizada en la blockchain local de demostración.</p>`}`;
   } catch (error) {
     console.error(error);
-    show("No se encontró un certificado con ese ID o no se pudo consultar la red.", "error");
+    const detail = error?.shortMessage || error?.message || "Error desconocido";
+    show(`No se pudo verificar el certificado. Detalle: ${detail}`, "error");
   }
 });
 
