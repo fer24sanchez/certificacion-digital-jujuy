@@ -6,6 +6,11 @@ const ABI = [
 const form = document.querySelector("form");
 const result = document.querySelector("#result");
 const configWarning = document.querySelector("#config-warning");
+const networkLabel = document.querySelector("#network-label");
+
+if (window.CERTIFICATE_CONFIG.chainId === 31337) {
+  networkLabel.textContent = "PROTOTIPO DE INVESTIGACIÓN · BLOCKCHAIN LOCAL";
+}
 
 function show(message, kind = "") {
   result.className = kind;
@@ -30,7 +35,9 @@ form.addEventListener("submit", async (event) => {
     const provider = new ethers.JsonRpcProvider(window.CERTIFICATE_CONFIG.rpcUrl);
     const contract = new ethers.Contract(window.CERTIFICATE_CONFIG.contractAddress, ABI, provider);
     const [certificate, recipient, metadataUri] = await contract.getCertificate(tokenId);
-    const explorer = `${window.CERTIFICATE_CONFIG.explorerUrl}/token/${window.CERTIFICATE_CONFIG.contractAddress}?a=${tokenId}`;
+    const explorer = window.CERTIFICATE_CONFIG.explorerUrl
+      ? `${window.CERTIFICATE_CONFIG.explorerUrl}/token/${window.CERTIFICATE_CONFIG.contractAddress}?a=${tokenId}`
+      : "";
     result.className = certificate.revoked ? "revoked" : "valid";
     result.innerHTML = `
       <h2>${certificate.revoked ? "Certificado revocado" : "Certificado válido"}</h2>
@@ -42,7 +49,7 @@ form.addEventListener("submit", async (event) => {
         <dt>Huella del documento</dt><dd class="mono">${escapeHtml(certificate.documentHash)}</dd>
         <dt>Metadata</dt><dd>${metadataUri ? `<a href="${escapeAttribute(metadataUri)}" target="_blank" rel="noreferrer">Ver metadata</a>` : "No declarada"}</dd>
       </dl>
-      <a class="explorer" href="${explorer}" target="_blank" rel="noreferrer">Ver transacción / NFT en PolygonScan ↗</a>`;
+      ${explorer ? `<a class="explorer" href="${explorer}" target="_blank" rel="noreferrer">Ver transacción / NFT en PolygonScan ↗</a>` : `<p class="local-note">Verificación realizada en la blockchain local de demostración.</p>`}`;
   } catch (error) {
     console.error(error);
     show("No se encontró un certificado con ese ID o no se pudo consultar la red.", "error");

@@ -10,7 +10,7 @@
     "deploy:amoy": "hardhat run scripts/deploy.js --network amoy",
     "issue:amoy": "hardhat run scripts/issue-certificate.js --network amoy",
     "demo:local": "hardhat run scripts/demo-local.js --network localhost",
-    "serve:web": "npx serve web -l 3000"
+    "serve:web": "npx serve . -l 3000"
   },
   "devDependencies": {
     "@ethereumjs/util": "^9.1.0",
@@ -21,6 +21,7 @@
     "ethers": "^6.15.0",
     "hardhat": "2.29.1",
     "resolve": "1.22.11",
+    "serve": "^14.2.4",
     "solc": "0.8.24",
     "undici": "5.29.0"
   },

@@ -23,22 +23,13 @@ Copiá la dirección de contrato que imprime el comando.
 
 ## Terminal 3 — verificador web
 
-En `web/config.js`, reemplazá temporalmente los valores por:
-
-```js
-rpcUrl: "http://127.0.0.1:8545",
-chainId: 31337,
-contractAddress: "PEGAR_AQUI_LA_DIRECCION_DEL_CONTRATO",
-explorerUrl: ""
-```
-
-Luego ejecutá:
+No hace falta modificar ningún archivo. Ejecutá:
 
 ```powershell
 npm run serve:web
 ```
 
-Abrí `http://localhost:3000`, escribí `1` y verificá el certificado. Al terminar, restaurá `web/config.js` con los valores de Amoy.
+Abrí `http://localhost:3000/web/?network=local`, escribí `1` y verificá el certificado. La URL activa el modo local y usa la dirección predecible del primer contrato desplegado por Hardhat. Este modo carga `ethers` desde las dependencias ya instaladas, por lo que no depende de Internet.
 
 ## Cómo presentarlo
 
