@@ -1,6 +1,7 @@
 const hre = require("hardhat");
 
 const recipient = process.env.DEMO_RECIPIENT;
+const LOCAL_CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
 async function main() {
   if (!recipient) {
@@ -9,8 +10,26 @@ async function main() {
 
   const [issuer] = await hre.ethers.getSigners();
   const Factory = await hre.ethers.getContractFactory("CertificadoEducativo");
-  const certificate = await Factory.deploy(issuer.address);
-  await certificate.waitForDeployment();
+  const deployedCode = await hre.ethers.provider.getCode(LOCAL_CONTRACT_ADDRESS);
+  const certificate = deployedCode === "0x"
+    ? await Factory.deploy(issuer.address)
+    : Factory.attach(LOCAL_CONTRACT_ADDRESS);
+
+  if (deployedCode === "0x") {
+    await certificate.waitForDeployment();
+  }
+
+  try {
+    const [existingCertificate, existingRecipient] = await certificate.getCertificate(1);
+    console.log("Demo local ya disponible");
+    console.log("Contrato:", await certificate.getAddress());
+    console.log("Token ID: 1");
+    console.log("Destinatario:", existingRecipient);
+    console.log("Titular:", existingCertificate.recipientName);
+    return;
+  } catch (_) {
+    // Aún no hay un certificado con ID 1: se emite debajo.
+  }
 
   const transaction = await certificate.issueCertificate(
     recipient,
