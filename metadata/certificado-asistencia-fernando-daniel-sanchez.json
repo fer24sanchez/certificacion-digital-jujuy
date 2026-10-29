@@ -1,0 +1,31 @@
+{
+  "name": "Certificado de asistencia — Jóvenes Investigadores en Acción",
+  "description": "Certificado de asistencia emitido como demostración académica del prototipo de certificación digital basada en contratos inteligentes.",
+  "external_url": "https://amoy.polygonscan.com/",
+  "attributes": [
+    {
+      "trait_type": "Titular",
+      "value": "Fernando Daniel Sanchez"
+    },
+    {
+      "trait_type": "Evento",
+      "value": "Jóvenes Investigadores en Acción"
+    },
+    {
+      "trait_type": "Fecha del evento",
+      "value": "2026-10-29"
+    },
+    {
+      "trait_type": "Institución emisora",
+      "value": "UCSE — Sede Jujuy"
+    },
+    {
+      "trait_type": "Red",
+      "value": "Polygon Amoy (demostración)"
+    },
+    {
+      "trait_type": "Estado",
+      "value": "Vigente"
+    }
+  ]
+}

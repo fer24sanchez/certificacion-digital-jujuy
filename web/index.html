@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verificador de certificados | Jujuy</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">PROTOTIPO DE INVESTIGACIÓN · POLYGON AMOY</p>
+      <h1>Verificador público de certificados</h1>
+      <p class="intro">Consulta la evidencia de emisión registrada en blockchain. No requiere billetera ni inicio de sesión.</p>
+      <p id="config-warning" class="warning" hidden>Demo sin contrato configurado. Después del despliegue, actualizá <code>web/config.js</code>.</p>
+      <form>
+        <label for="token-id">ID del certificado</label>
+        <div class="row">
+          <input id="token-id" type="number" min="1" step="1" inputmode="numeric" placeholder="Ej.: 1" required />
+          <button type="submit">Verificar</button>
+        </div>
+      </form>
+      <section id="result" aria-live="polite">Ingresá el ID del certificado para comprobar su vigencia.</section>
+      <footer>Prototipo funcional mínimo · Certificación digital educativa · Jujuy</footer>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
