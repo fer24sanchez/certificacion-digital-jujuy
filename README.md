@@ -26,6 +26,12 @@ npm run deploy:amoy
 
 Copiá la dirección mostrada a `CONTRACT_ADDRESS` en `.env` y a `contractAddress` en `web/config.js`.
 
+## Diccionario básico
+
+### Faucet
+
+Un **faucet** es un servicio que entrega gratuitamente pequeñas cantidades de criptomonedas de prueba. En este proyecto se utiliza para obtener **POL de prueba** en Polygon Amoy y pagar el gas necesario para desplegar el contrato o emitir un certificado. Esos POL no tienen valor económico real, solo sirven para experimentar en la red de pruebas.
+
 ## Emitir una demostración
 
 No se suben datos personales ni el PDF a blockchain. Se registra solo una huella criptográfica. Definí las variables en tu sesión de PowerShell:
